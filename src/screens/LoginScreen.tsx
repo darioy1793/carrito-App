@@ -5,8 +5,6 @@ import { BodyComponent } from '../components/BodyComponent'
 import { stylesGlobal } from '../theme/appTheme'
 import { InputComponent } from '../components/InputComponent'
 import { ButtonComponent } from '../components/ButtonComponent'
-
-//inyterface define la estructura del objeto del formulario
 interface Formulario{
   email:string;
   password:string;
@@ -21,9 +19,19 @@ export const LoginScreen = () => {
   });
   //funcion para capturar los valores del formulario
   const handleChangeValue = (name:string, value:string): void =>{
-    console.log(name,"",value);
-
+    //console.log(name,"",value);
+    setformLogin({
+      ...formLogin,
+      [name]:value
+    });
   }
+    //funcion para iniciar sesion
+    const handleSingIn = ():void => {
+    
+      console.log(formLogin);
+    }
+
+  
   return (
     <View>
       <StatusBar/>
@@ -35,9 +43,9 @@ export const LoginScreen = () => {
           <InputComponent placeholder='Correo' keyboardType='email-address' 
           handleChangeValue={handleChangeValue} name='email'/>
           <InputComponent placeholder='Contraseña' keyboardType='default'
-          handleChangeValue={handleChangeValue}name='password' />
+          handleChangeValue={handleChangeValue}name='password' ispassword={true} />
           </View>
-          <ButtonComponent buttonText='Iniciar'/>
+          <ButtonComponent buttonText='Iniciar' onPress={handleSingIn}/>
           
         </BodyComponent>
     </View>
