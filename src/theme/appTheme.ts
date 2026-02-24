@@ -3,7 +3,7 @@ import { CUARTERNARY_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TERTIARY_COLOR } fro
 
 export const stylesGlobal =StyleSheet.create({
     title: {
-        color:TERTIARY_COLOR,
+        color:'#fff',
         fontSize:25,
         paddingHorizontal:30,
         paddingTop:60

@@ -8,22 +8,19 @@ import { ButtonComponent } from '../components/ButtonComponent'
 import Icon from '@expo/vector-icons/MaterialIcons';
 import { TERTIARY_COLOR } from '../commons/constants'
 import { CommonActions, useNavigation } from '@react-navigation/native'
+import { User } from '../navigator/StackNavigator'
 interface Formulario{
   email:string;
   password:string;
 }
-interface User{
-  id:number;
-  name:string;
-  email:string;
-  password:string;
-}
+ //interface para  definir las propiedades del usuario
+ interface Props{
+  users: User[]; //arreglo con la lista de usuarios registrados desde el StackNavigator
+ }
 
-export const LoginScreen = () => {
-  //datos de prueba
-  const users: User[] = [
-    {id: 1, name:'viviana Flores', email:'vflores@gmail.com', password:'123456'},
-    {id: 2, name:'Carlos Aguas', email:'caguas@gmail.com', password:'123456'}]
+
+export const LoginScreen = ({users}:Props) => {
+
   //hook useState:permite gestionar el estado del formulario
   const [formLogin, setformLogin] = useState({
     email:'',
@@ -62,7 +59,9 @@ export const LoginScreen = () => {
         return;
       }
     
-      console.log(formLogin);
+      //console.log(formLogin);
+      //si todo esta correcto navegar a la pantalla de Home
+      navigation.dispatch(CommonActions.navigate({name:'Home'}));
     }
 
   
