@@ -8,15 +8,24 @@ interface Props {
   isVisible: boolean; //mostrar o no el modal
   item: Product; //producto seleccionado para mostrar en el modal
   hiddenModal: () => void; //funcion para ocultar el modal
+  changeStockProduct:(id:number,quantity:number)=>void;//funcion actualiza el stock del modal
 }
 
-export const ModalProduct = ({ isVisible, item, hiddenModal }: Props) => {
+export const ModalProduct = ({ isVisible, item, hiddenModal, changeStockProduct }: Props) => {
   const { width } = useWindowDimensions();
 
   //funcion para el contador de cantidad de productos a agregar al carrito
   const [quantity, setQuantity] = useState<number>(1);
 
-  //funcion para validar el stock disponible del producto
+  //funcion agregar el producto al carrito
+  const handleAddProduct = ()=>{
+    //llamar a la funcion q actualiza el stock
+    changeStockProduct(item.id,quantity);
+    //cerrar modal
+    hiddenModal();
+    //reiiciar la cantidad a 1
+    setQuantity(1);
+  }
  
   return (
     <Modal visible={isVisible} animationType="slide" transparent={true}>
@@ -47,14 +56,14 @@ export const ModalProduct = ({ isVisible, item, hiddenModal }: Props) => {
             <TouchableOpacity style={stylesGlobal.buttonQuantity}>
                 <Text style={stylesGlobal.buttonQuantityText}>{quantity}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={stylesGlobal.buttonQuantity} onPress={() => setQuantity(quantity +1)}>
+            <TouchableOpacity style={stylesGlobal.buttonQuantity} onPress={() => setQuantity(quantity +1)} disabled={quantity === item.stock}>
                 <Text style={stylesGlobal.buttonQuantityText} >+</Text>
             </TouchableOpacity>
           </View>
           <View style={{alignItems:'center', marginVertical:10}}>
             <Text style={stylesGlobal.textTotal}>Total: ${(item.price * quantity).toFixed(2)}</Text>
           </View>
-          <TouchableOpacity style={stylesGlobal.button}>
+          <TouchableOpacity style={stylesGlobal.button} onPress={handleAddProduct}>
             <Text style={stylesGlobal.buttonText}>Agregar al carrito</Text>
           </TouchableOpacity>
             </>

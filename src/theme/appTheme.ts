@@ -151,6 +151,49 @@ export const stylesGlobal =StyleSheet.create({
         color:'red',
         marginTop:15,
         textAlign:'center'
+    },
+    iconProduct:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingHorizontal:30,
+        paddingTop:20
+    },
+    textIconCart:{
+        backgroundColor:'red',
+        paddingHorizontal:5,
+        borderRadius:50,
+        color:'#fff',
+        fontSize:12,
+        fontWeight:'bold',
+        position:'absolute',    
+        top:-10,
+        right:-10,
+        zIndex:1
+    },
+    headerTabla:{
+        flexDirection:'row',
+        justifyContent:'space-between', 
+       
+       
+    },
+    headerDescription:{
+        flexDirection:'row',
+    },
+        
+    headerTextTable:{
+        fontSize:16,
+        fontWeight:'bold',
+        marginBottom:5
+    },
+    containerTotalPay:{
+        alignItems:'flex-end',
+        marginVertical:10
+    },
+    textTotalPay:{
+        fontSize:18,
+        fontWeight:'bold',
+        color:'green'
     }
 
 })

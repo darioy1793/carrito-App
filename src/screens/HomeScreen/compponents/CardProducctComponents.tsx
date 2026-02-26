@@ -8,15 +8,17 @@ import { ModalProduct } from '../../../components/ModalProduct';
 
 interface Props{
   item:Product;
+  changeStockProduct:(id: number,quantity: number) => void;
 }
 
-export const CardProducctComponents = ({item}:Props) => {
+export const CardProducctComponents = ({item,changeStockProduct}:Props) => {
 
   //hook useState para controlar la visibilidad del modal
   const [showModal, setshowModal] = useState<boolean>(false);
   //funcion para mostrar o | ocultar el modal
   const hiddenModal = ():void => {
     setshowModal(!showModal);
+
   }
 
   return (
@@ -31,7 +33,8 @@ export const CardProducctComponents = ({item}:Props) => {
         <Icon name="add-shopping-cart" size={30} color="green" onPress={hiddenModal} />
         </View>
     </View>
-     <ModalProduct isVisible={showModal} item={item} hiddenModal={hiddenModal} />
+     <ModalProduct isVisible={showModal} item={item} hiddenModal={hiddenModal} 
+     changeStockProduct={changeStockProduct}/>
      </>
   )
 }
